@@ -1,68 +1,31 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Typography, TextField, Button, Box } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { Typography, Button, Box } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
 import DoneIcon from '@mui/icons-material/Done';
 import { useNavigate } from 'react-router';
-import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import React from 'react';
 
-import {
-  signInPasswordSelector,
-  signInEmailSelector,
-} from '../../store/signIn-slice/signIn-selectors';
-import {
-  setSignInState,
-  setPassword,
-  setEmail,
-} from '../../store/signIn-slice';
+import { TextFieldController } from '../../components/UI_components/TextFieldController';
+import { SignInSchema } from '../../constants/ValidationSchemas';
 import { usersGet } from '../../services/authorizationService';
+import { ISignInData } from '../../types';
 
 export const SignIn = () => {
-  const dispatch = useDispatch();
+  const { handleSubmit, control, reset } = useForm<ISignInData>({
+    resolver: yupResolver(SignInSchema),
+    mode: 'onBlur',
+  });
+
   const navigate = useNavigate();
 
-  const email = useSelector(signInEmailSelector);
-  const password = useSelector(signInPasswordSelector);
-
-  const [isEmailCorrect, setIsEmailCorrect] = useState(true);
-  const [noCredentials, setNoCredentials] = useState(false);
-  // const [showSignUpSuccess, setShowSignUpSuccess] = useState(false);
-  // const [confirmPasswordMatch, setConfirmPasswordMatch] = useState(true);
-
   const handleGoToSignUp = () => {
-    dispatch(setSignInState());
+    reset();
     navigate('/sign-up');
   };
 
-  const validateEmail = (email: string) => {
-    // eslint-disable-next-line no-useless-escape
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      return true;
-    }
-    return false;
-  };
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isEmailCorrect) {
-      setIsEmailCorrect(true);
-    }
-    if (noCredentials) {
-      setNoCredentials(false);
-    }
-    dispatch(setEmail(event.target.value));
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (noCredentials) {
-      setNoCredentials(false);
-    }
-    dispatch(setPassword(event.target.value));
-  };
-
-  const handleSignIn = async () => {
-    if (!validateEmail(email)) {
-      setIsEmailCorrect(false);
-    }
-
+  const handleSignIn = async (data: ISignInData) => {
+    const { password, email } = data;
     try {
       const { data } = await usersGet();
       const findUser = data.find(
@@ -70,14 +33,9 @@ export const SignIn = () => {
           return user.email === email && user.password === password;
         },
       );
-      if (!findUser) {
-        setNoCredentials(true);
-        return;
-      }
-      dispatch(setSignInState());
       localStorage.setItem('token', findUser.token);
-      localStorage.setItem('user', findUser.email);
-      navigate('/dashboard');
+      reset();
+      navigate('/my-profile');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
@@ -105,31 +63,19 @@ export const SignIn = () => {
             gap: '24px',
           }}
         >
-          <Typography fontWeight={600} fontSize={24}>
+          <Typography fontWeight={600} fontSize={48}>
             Sign In
           </Typography>
-          <TextField
-            helperText={
-              isEmailCorrect
-                ? noCredentials
-                  ? 'No Credentials'
-                  : ''
-                : 'Please provide correct email'
-            }
-            error={!isEmailCorrect || noCredentials}
-            onChange={handleEmailChange}
+          <TextFieldController
+            fieldName="email"
+            control={control}
             label="Email*"
-            value={email}
-            size="small"
-            fullWidth
           />
-          <TextField
-            onChange={handlePasswordChange}
+          <TextFieldController
+            fieldName="password"
             label="Password*"
-            value={password}
+            control={control}
             type="password"
-            size="small"
-            fullWidth
           />
           <Box
             sx={{
@@ -141,8 +87,8 @@ export const SignIn = () => {
             }}
           >
             <Button
+              onClick={handleSubmit(handleSignIn)}
               endIcon={<DoneIcon />}
-              onClick={handleSignIn}
               variant="contained"
             >
               Sign In

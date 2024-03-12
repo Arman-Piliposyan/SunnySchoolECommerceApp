@@ -1,60 +1,39 @@
-import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
-import CloudSyncIcon from '@mui/icons-material/CloudSync';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import TheatersIcon from '@mui/icons-material/Theaters';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import React from 'react';
 
 export const DrawerMenu = [
   {
-    icon: <SpaceDashboardIcon sx={{ fontSize: '20px' }} />,
-    route: '/dashboard',
-    name: 'Dashboard',
+    icon: <AccountBoxIcon sx={{ fontSize: '20px' }} />,
+    route: '/my-profile',
+    name: 'My Profile',
     id: '0',
   },
   {
-    icon: <CloudSyncIcon sx={{ fontSize: '20px' }} />,
-    route: '/lee-algorithm',
-    name: 'Lee Algorithm',
+    icon: <LocalMallIcon sx={{ fontSize: '20px' }} />,
+    route: '/product-list',
+    name: 'Product List',
     id: '1',
   },
   {
-    icon: <LiveTvIcon sx={{ fontSize: '20px' }} />,
-    route: '/stream',
-    name: 'Stream',
-    id: '2',
-  },
-  {
-    icon: <LightModeIcon sx={{ fontSize: '20px' }} />,
-    route: '/weather',
-    name: 'Weather',
+    icon: <ShoppingCartIcon sx={{ fontSize: '20px' }} />,
+    route: '/shopping-cart',
+    name: 'Shopping Cart',
     id: '3',
   },
   {
-    icon: <CompareArrowsIcon sx={{ fontSize: '20px' }} />,
-    route: '/socket',
-    name: 'Socket',
+    icon: <ListAltIcon sx={{ fontSize: '20px' }} />,
+    route: '/orders',
+    name: 'Orders',
     id: '4',
   },
   {
-    icon: <VideoLibraryIcon sx={{ fontSize: '20px' }} />,
-    route: '/video-player',
-    name: 'Video Player',
+    icon: <SettingsApplicationsIcon sx={{ fontSize: '20px' }} />,
+    route: '/admin',
+    name: 'Admin',
     id: '5',
-  },
-  {
-    icon: <TheatersIcon sx={{ fontSize: '20px' }} />,
-    route: '/movies',
-    name: 'Movies',
-    id: '6',
-  },
-  {
-    icon: <VideogameAssetIcon sx={{ fontSize: '20px' }} />,
-    name: 'Sea-Battle',
-    route: '/game',
-    id: '6',
   },
 ];

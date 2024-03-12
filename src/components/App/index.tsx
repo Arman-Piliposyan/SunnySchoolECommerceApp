@@ -6,19 +6,16 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 
-import { WeatherContextProvider } from '../../pages/Weather/WeatherContext';
-import LeeAlgorithmVisualization from '../LeeAlgoritm';
-import { VideoPlayer } from '../../pages/VideoPlayer';
-import { Dashboard } from '../../pages/Dashboard';
-import { SeaBattle } from '../../pages/SeaBattle';
+import { ProductDetails } from '../../pages/ProductDetails';
+import { ShoppingCart } from '../../pages/ShoppingCart';
+import { ProductList } from '../../pages/ProductList';
+import { MyProfile } from '../../pages/MyProfile';
 import { PrivateRoute } from '../PrivateRoute';
-import { Weather } from '../../pages/Weather';
 import { PublicRoute } from '../PublicRoute';
 import { SignUp } from '../../pages/SignUp';
 import { SignIn } from '../../pages/SignIn';
-import { Stream } from '../../pages/Stream';
-import { Socket } from '../../pages/Socket';
-import { Movies } from '../../pages/Movies';
+import { Orders } from '../../pages/Orders';
+import { Admin } from '../../pages/Admin';
 import { Layout } from '../Layout';
 
 const App = () => {
@@ -40,24 +37,12 @@ const App = () => {
             }
             path="/"
           >
-            <Route element={<Dashboard />} path="dashboard" />
-            <Route
-              element={<LeeAlgorithmVisualization />}
-              path="lee-algorithm"
-            />
-            <Route element={<Stream />} path="stream" />
-            {/* <Route element={<Socket />} path="socket" /> */}
-            <Route element={<VideoPlayer />} path="video-player" />
-            <Route element={<Movies />} path="movies" />
-            <Route element={<SeaBattle />} path="game" />
-            <Route
-              element={
-                <WeatherContextProvider>
-                  <Weather />
-                </WeatherContextProvider>
-              }
-              path="weather"
-            />
+            <Route element={<MyProfile />} path="my-profile" />
+            <Route element={<ProductList />} path="product-list" />
+            <Route element={<ProductDetails />} path="product-details" />
+            <Route element={<ShoppingCart />} path="shopping-cart" />
+            <Route element={<Orders />} path="orders" />
+            <Route element={<Admin />} path="admin" />
           </Route>
         </Routes>
       </Router>

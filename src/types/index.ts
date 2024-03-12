@@ -7,3 +7,8 @@ export interface ISignUpData {
   email: string;
   phone: string;
 }
+
+export interface ISignInData {
+  password: string;
+  email: string;
+}

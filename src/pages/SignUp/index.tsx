@@ -17,6 +17,7 @@ export const SignUp = () => {
     resolver: yupResolver(SignUpSchema),
     mode: 'onBlur',
   });
+
   const navigate = useNavigate();
 
   const [showSignUpSuccess, setShowSignUpSuccess] = useState(false);
@@ -86,7 +87,7 @@ export const SignUp = () => {
             gap: '16px',
           }}
         >
-          <Typography fontWeight={600} fontSize={24}>
+          <Typography fontWeight={600} fontSize={48}>
             Sign Up
           </Typography>
           <TextFieldController
