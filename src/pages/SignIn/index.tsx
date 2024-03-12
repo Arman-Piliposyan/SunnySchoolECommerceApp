@@ -34,6 +34,7 @@ export const SignIn = () => {
         },
       );
       localStorage.setItem('token', findUser.token);
+      localStorage.setItem('userId', findUser.id);
       reset();
       navigate('/my-profile');
     } catch (error) {

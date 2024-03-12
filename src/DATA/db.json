@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "firstName": "Arman",
-      "lastName": "Piliposyan",
-      "imageUrl": "https://assetsio.reedpopcdn.com/god-of-war-walkthrough-guide-5004-1642178551828.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp",
+      "firstName": "God",
+      "lastName": "War",
+      "imageUrl": "https://oyster.ignimgs.com/mediawiki/apis.ign.com/god-of-war-ragnarok/d/dc/Kratos.jpg",
       "password": "123",
       "email": "user1@gmail.com",
-      "phone": "+37477777777",
+      "phone": "+37400000000",
       "token": "8cdd8fcc-67aa-4ad5-b359-dc955f3aa0d0",
       "id": 1
     }

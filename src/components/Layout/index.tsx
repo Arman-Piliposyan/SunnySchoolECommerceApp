@@ -18,6 +18,8 @@ import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 
+import { getUser } from '../../store/user-slice';
+import { useAppDispatch } from '../../store';
 import { DrawerMenu } from './constants';
 
 const drawerWidth = 240;
@@ -92,6 +94,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export const Layout = () => {
+  const dispatch = useAppDispatch();
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -107,6 +111,10 @@ export const Layout = () => {
     localStorage.clear();
     navigate('/sign-in');
   };
+
+  React.useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>

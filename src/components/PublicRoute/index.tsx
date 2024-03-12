@@ -3,5 +3,5 @@ import React from 'react';
 
 export const PublicRoute = () => {
   const token = localStorage.getItem('token');
-  return !token ? <Outlet /> : <Navigate to={'/dashboard'} />;
+  return !token ? <Outlet /> : <Navigate to={'/my-profile'} />;
 };
