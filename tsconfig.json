@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "@/*": ["*"],
+    // },
+  },
+  "include": ["src/**/*"],
+}
