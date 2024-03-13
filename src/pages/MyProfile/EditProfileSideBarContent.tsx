@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import SaveIcon from '@mui/icons-material/Save';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import React from 'react';
 
 import { TextFieldController } from '../../components/UI_components/TextFieldController';
@@ -29,9 +30,10 @@ export const EditProfileSideBarContent = ({ handleCloseSideBar }: Props) => {
     try {
       await editProfile({ id: user?.id as string, data });
       dispatch(getUser());
-
+      toast.success('Success');
       handleCloseSideBar();
     } catch (error) {
+      toast.error('Fail');
       // eslint-disable-next-line no-console
       console.log(error);
     }

@@ -2,13 +2,79 @@
   "users": [
     {
       "firstName": "God",
-      "lastName": "War",
+      "lastName": "Of War",
       "imageUrl": "https://oyster.ignimgs.com/mediawiki/apis.ign.com/god-of-war-ragnarok/d/dc/Kratos.jpg",
       "password": "123",
       "email": "user1@gmail.com",
       "phone": "+37400000000",
       "token": "8cdd8fcc-67aa-4ad5-b359-dc955f3aa0d0",
       "id": 1
+    }
+  ],
+  "shoppingCards": [],
+  "products": [
+    {
+      "title": "SteelSeries Aerox 5",
+      "description": "Aerox 5 Wireless combines dazzling RGB with industury-leading design. Victory is in your hand with a lightning-fast 74g build shielded from dust and splashes with AquaBarrier™. Easily connect with lag-free Quantum 2.0 Wireless enjoying superb 180-hour battery life, aiming using ultra-precise, 1-to-1 tracking with the TrueMove Air sensor.",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Ibl7dJyUL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+      "price": 124,
+      "id": 1
+    },
+    {
+      "title": "ASUS ROG Azoth",
+      "description": "Unlike the traditional mechanical keyboards, the ROG Azoth comes with an extra PORON foam. Three layers of dampening foams absorb noise, bringing a better typing experience.\nThe ROG Azoth is a 75% custom DIY mechanical keyboard. You can swap and install your own switch type according to your preference.",
+      "imageUrl": "https://m.media-amazon.com/images/I/81ykzmz6KZL._AC_SX466_.jpg",
+      "price": 160,
+      "id": 2
+    },
+    {
+      "title": "ASUS ROG Sheath Extended",
+      "description": "Rog sheath is an extra-large, gaming-optimized mouse pad that’s compatible with all sensor types and sensitivities. At 35.4” x 17.3” and just 0.12” thick, ROG sheath delivers unmatched precision and control thanks to an ultra-smooth surface for pixel-precise tracking, non-slip rog-red rubberized base, and stitched edges for a prolonged lifespan.",
+      "imageUrl": "https://m.media-amazon.com/images/I/71CuCyXIaOL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+      "price": 23,
+      "id": 3
+    },
+    {
+      "title": "ASUS ROG Delta S",
+      "description": "The ROG Delta S Wireless is the first dual-mode wireless ROG gaming headset. It features 2.4 GHz and Bluetooth® connectivity to give you wireless freedom and more extensive compatibility across a range of devices. Plus, industry-leading AI Beamforming Microphones with AI Noise Cancelation ensure exceptional voice pick-up and crystal-clear communication.",
+      "imageUrl": "https://m.media-amazon.com/images/I/71K5y1yATzL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+      "price": 147,
+      "id": 4
+    },
+    {
+      "title": "GTRACING Footrest",
+      "description": "Perfect for Gaming: Gtracing gaming chair for pro gamers.Aiming to improve your gaming experience.Multi Function: Armrest and seat height adjustable;large reclining and rocking; 360 degree swivel.High Quality:Pu leather, added seat cushion,lumbar headrest pillow offer added support and comfort",
+      "imageUrl": "https://m.media-amazon.com/images/I/618I64n2QdL._AC_SX679_.jpg",
+      "price": 129,
+      "id": 5
+    },
+    {
+      "title": "SteelSeries Apex Pro TKL",
+      "description": "The Apex Pro TKL Wireless is the world's first Hall Effect magnetic switch gaming keyboard. Featuring OmniPoint 2.0 Adjustable HyperMagnetic Switches with Rapid Trigger, total adjustability of actuation points, and 2-in-1 Acton keys for 20x quicker actuation and 11x faster response, all while playing on an esports ready, TKL form factor.",
+      "imageUrl": "https://m.media-amazon.com/images/I/71yzmNNMC1L._AC_SX466_.jpg",
+      "price": 249,
+      "id": 6
+    },
+    {
+      "title": "MSI Stealth 17 Studio ",
+      "description": "The MSI Stealth 17 Studio 17.3\" QHD 240Hz Gaming Laptop is a powerful and stylish gaming machine that is perfect for gamers and creative professionals. Equipped with a high-performance Intel Core i9-13900H processor and an Nvidia RTX 4080 graphics card, this laptop delivers stunning graphics and fast performance that can handle even the most demanding games and applications. With 32GB of DDR5 memory and a 1TB NVMe SSD, you can enjoy quick and smooth multitasking, as well as fast boot-ups and load times.",
+      "imageUrl": "https://m.media-amazon.com/images/I/714fL2+tNuL._AC_SY300_SX300_.jpg",
+      "price": 2742,
+      "id": 7
+    },
+    {
+      "title": "PlayStation DualSense",
+      "description": "Ignite your gaming nights on your PS5 console with the DualSense Midnight Black wireless controller. Part of a new line-up of galaxy-themed colors, this sleek design takes inspiration from how we view the wonders of space through the night sky, with subtle shades of black and light gray detailing. Discover a deeper, highly immersive gaming experience** that brings the action to life in the palms of your hands. The DualSense wireless controller offers immersive haptic feedback*, dynamic adaptive triggers* and a built-in microphone, all integrated into an iconic comfortable design. ",
+      "imageUrl": "https://m.media-amazon.com/images/I/61hAfaLMLMS._SX522_.jpg",
+      "price": 69,
+      "id": 8
+    },
+    {
+      "title": "Sony Playstation Portable",
+      "description": "Sony PSP 3000 International Console, Fully Technician Tested. Comes bundled with Two Batteries for extended play sessions. Comes bundled with AC Adapter and USA Charging Cable. In bubblewrap, bulk packaging for safe transit",
+      "imageUrl": "https://m.media-amazon.com/images/I/71G8OBFzzdL._SX522_.jpg",
+      "price": 183,
+      "id": 9
     }
   ]
 }

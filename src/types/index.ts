@@ -20,3 +20,14 @@ export interface IProfileData {
   email: string;
   phone: string;
 }
+
+export interface IAddProductData {
+  description: string;
+  imageUrl: string;
+  title: string;
+  price: number;
+}
+
+export interface IProductData extends IAddProductData {
+  id: string;
+}

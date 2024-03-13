@@ -27,3 +27,14 @@ export const ProfileSchema = yup.object().shape({
   firstName: yup.string().required('Required*'),
   lastName: yup.string().required('Required*'),
 });
+
+export const AddProductSchema = yup.object().shape({
+  price: yup
+    .number()
+    .min(1, 'Hey! Your duration must be greater than or equal to 1!')
+    .typeError('Required*')
+    .required('Required*'),
+  imageUrl: yup.string().url().required('Required*'),
+  description: yup.string().required('Required*'),
+  title: yup.string().required('Required*'),
+});
