@@ -31,3 +31,16 @@ export interface IAddProductData {
 export interface IProductData extends IAddProductData {
   id: string;
 }
+
+export type IAddProductToCardData = Omit<IAddProductData, 'description'> & {
+  userId: string;
+  count: number;
+};
+
+export type ICardProductData = IAddProductToCardData & {
+  id: string;
+};
+
+export type IOrderData = IAddProductToCardData & {
+  date: string;
+};

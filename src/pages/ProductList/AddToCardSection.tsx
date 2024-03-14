@@ -1,11 +1,17 @@
 import { Button, Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
+import { userSelector } from '../../store/user-slice/user-selectors';
+import { addToCardPost } from '../../services/shoppingCardService';
 import { IProductData } from '../../types';
 
 type Props = { product: IProductData };
 
 export const AddToCardSection = ({ product }: Props) => {
+  const user = useSelector(userSelector);
+
   const [count, setCount] = useState(1);
 
   const handleAddItem = () => {
@@ -19,7 +25,19 @@ export const AddToCardSection = ({ product }: Props) => {
     setCount((prev) => prev - 1);
   };
 
-  const handleAddShoppingCard = async (data: IProductData) => {};
+  const handleAddShoppingCard = async () => {
+    const { imageUrl, title, price } = product;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+      await addToCardPost({ userId: user?.id!, imageUrl, title, price, count });
+      setCount(1);
+      toast.success('Success');
+    } catch (error) {
+      toast.error('Fail');
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  };
 
   return (
     <Box>

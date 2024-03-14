@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { me } from '../../services/userService';
 
+import { me } from '../../services/userService';
 
 type User = {
   firstName: string;
@@ -13,9 +13,11 @@ type User = {
 
 type UserStateType = {
   user: User | null;
+  loading: boolean;
 };
 
 const initialState: UserStateType = {
+  loading: true,
   user: null,
 };
 
@@ -36,6 +38,10 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.user = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getUser.rejected, (state) => {
+      state.loading = false;
     });
   },
   reducers: {},

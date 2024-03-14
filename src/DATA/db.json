@@ -3,7 +3,7 @@
     {
       "firstName": "God",
       "lastName": "Of War",
-      "imageUrl": "https://oyster.ignimgs.com/mediawiki/apis.ign.com/god-of-war-ragnarok/d/dc/Kratos.jpg",
+      "imageUrl": "https://cdnb.artstation.com/p/assets/images/images/065/925/405/4k/sergey-solop-kratos-god-of-war-01.jpg?1691581582",
       "password": "123",
       "email": "user1@gmail.com",
       "phone": "+37400000000",
@@ -11,7 +11,27 @@
       "id": 1
     }
   ],
-  "shoppingCards": [],
+  "orders": [
+    {
+      "date": "2024/03/14 22:03",
+      "userId": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/61hAfaLMLMS._SX522_.jpg",
+      "title": "PlayStation DualSense",
+      "price": 69,
+      "count": 4,
+      "id": 1
+    }
+  ],
+  "shoppingCards": [
+    {
+      "userId": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/61Ibl7dJyUL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+      "title": "SteelSeries Aerox 5",
+      "price": 124,
+      "count": 1,
+      "id": 1
+    }
+  ],
   "products": [
     {
       "title": "SteelSeries Aerox 5",

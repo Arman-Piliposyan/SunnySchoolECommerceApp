@@ -13,11 +13,14 @@ import ListItem from '@mui/material/ListItem';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Tooltip } from '@mui/material';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 
+import { loadingSelector } from '../../store/user-slice/user-selectors';
+import { LayoutLoader } from '../UI_components/LayoutLoader';
 import { getUser } from '../../store/user-slice';
 import { useAppDispatch } from '../../store';
 import { DrawerMenu } from './constants';
@@ -94,6 +97,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export const Layout = () => {
+  const loading = useSelector(loadingSelector);
+
   const dispatch = useAppDispatch();
 
   const theme = useTheme();
@@ -198,7 +203,7 @@ export const Layout = () => {
         }}
         component="main"
       >
-        <Outlet />
+        {loading ? <LayoutLoader /> : <Outlet />}
       </Box>
     </Box>
   );
