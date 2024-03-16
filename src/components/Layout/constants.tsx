@@ -34,6 +34,12 @@ export const DrawerMenu = [
 
 export const AdminMenu = [
   {
+    icon: <AccountBoxIcon sx={{ fontSize: '20px' }} />,
+    route: '/my-profile',
+    name: 'My Profile',
+    id: '0',
+  },
+  {
     icon: <SettingsApplicationsIcon sx={{ fontSize: '20px' }} />,
     route: '/admin',
     name: 'Admin',

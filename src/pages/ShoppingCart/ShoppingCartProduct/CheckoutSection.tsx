@@ -123,8 +123,8 @@ export const CheckoutSection = ({ setIsCardEdited, product }: Props) => {
           isOpenDialog={isOpenDialog}
           confirmIcon={<PaidIcon />}
           buttonColor="primary"
-          confirmText="Yes"
-          cancelText="No"
+          cancelText="Cancel"
+          confirmText="Buy"
         />
       )}
     </>
