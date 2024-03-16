@@ -1,18 +1,50 @@
+import {
+  InputAdornment,
+  Typography,
+  TextField,
+  Slider,
+  Box,
+  Fab,
+} from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import { Typography, Box, Fab } from '@mui/material';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 
+import {
+  productsWrapperStyles,
+  sliderWrapperStyles,
+  searchWrapperStyles,
+  pageHeaderStyles,
+  wrapperStyles,
+} from './constants';
 import { getAllProducts } from '../../services/productsService';
-import { ScrollBarStylesGenerator } from '../../helpers/index';
+import { alphabetSortingCallBack } from '../../helpers/index';
 import { ProductCard } from './ProductCard';
 import { IProductData } from '../../types';
 
 export const ProductList = () => {
   const [products, setProducts] = useState<IProductData[] | null>(null);
-
   const [sortedByUp, setSortedByUp] = useState(false);
   const [isSorted, setIsSorted] = useState(false);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [filterRange, setFilterRange] = useState<number[]>([0, 1000]);
+  const [inputValue, setInputValue] = useState('');
+  const [debouncedInputValue, setDebouncedInputValue] = useState('');
+
+  const handleChange = (event: Event, newValue: number[] | number) => {
+    setFilterRange(newValue as number[]);
+  };
+
+  const handleFilter = () => {
+    setIsFiltered(true);
+  };
+
+  const handleUnFilter = () => {
+    setIsFiltered(false);
+  };
 
   const handleSortByUp = () => {
     setIsSorted(true);
@@ -27,6 +59,31 @@ export const ProductList = () => {
     setIsSorted(false);
   };
 
+  const handleClick = () => {
+    if (!isSorted) {
+      handleSortByUp();
+      return;
+    }
+    if (sortedByUp) {
+      handleSortByDown();
+      return;
+    }
+    handleUnSort();
+  };
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    setInputValue(event.target.value);
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedInputValue(inputValue.toUpperCase());
+    }, 600);
+    return () => clearTimeout(timeoutId);
+  }, [inputValue]);
+
   useEffect(() => {
     (async () => {
       const { data } = await getAllProducts();
@@ -34,98 +91,98 @@ export const ProductList = () => {
     })();
   }, []);
 
-  const sortingCallback = (item1: IProductData, item2: IProductData) => {
-    return item1.title.toLocaleLowerCase() > item2.title.toLocaleLowerCase()
-      ? sortedByUp
-        ? 1
-        : -1
-      : item2.title.toLocaleLowerCase() > item1.title.toLocaleLowerCase()
-        ? sortedByUp
-          ? -1
-          : 1
-        : 0;
-  };
+  const filteredBySearchProducts = products
+    ? debouncedInputValue
+      ? [...products].filter((item) =>
+          item.title.toUpperCase().includes(debouncedInputValue),
+        )
+      : [...products]
+    : [];
 
-  const finalData = isSorted ? [...products!].sort(sortingCallback) : products;
+  const filteredProducts = isFiltered
+    ? [...filteredBySearchProducts].filter(
+        (item) => item.price >= filterRange[0] && item.price <= filterRange[1],
+      )
+    : [...filteredBySearchProducts];
+
+  const finalData = isSorted
+    ? filteredProducts.sort(alphabetSortingCallBack(sortedByUp))
+    : filteredProducts;
 
   return (
-    <Box
-      sx={{
-        flexDirection: 'column',
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-        gap: '16px',
-      }}
-    >
-      <Box
-        sx={{
-          alignItems: 'center',
-          display: 'flex',
-          width: '100%',
-          gap: '32px',
-        }}
-      >
+    <Box sx={wrapperStyles}>
+      <Box sx={pageHeaderStyles}>
         <Typography component={'span'} fontWeight={700} fontSize={32}>
           Products
         </Typography>
-        {isSorted ? (
-          sortedByUp ? (
-            <Fab
-              onClick={handleSortByDown}
-              variant="extended"
-              color="primary"
-              size="small"
-            >
-              <ArrowUpwardIcon
-                sx={{
-                  fontSize: '20px',
-                }}
-              />
-              A-Z
-            </Fab>
+        <Fab
+          sx={
+            !isSorted
+              ? {
+                  '&:hover': {
+                    backgroundColor: '#3f454f',
+                  },
+                  backgroundColor: '#57606f ',
+                  color: 'white',
+                }
+              : {}
+          }
+          onClick={handleClick}
+          variant="extended"
+          color="primary"
+          size="small"
+        >
+          {!isSorted || sortedByUp ? (
+            <ArrowUpwardIcon sx={{ fontSize: '20px' }} />
           ) : (
-            <Fab
-              onClick={handleUnSort}
-              variant="extended"
-              color="primary"
-              size="small"
-            >
-              <ArrowDownwardIcon
-                sx={{
-                  fontSize: '20px',
-                }}
-              />
-              Z-A
-            </Fab>
-          )
-        ) : (
+            <ArrowDownwardIcon sx={{ fontSize: '20px' }} />
+          )}
+          {!isSorted || sortedByUp ? 'A-Z' : 'Z-A'}
+        </Fab>
+        <Box sx={sliderWrapperStyles}>
           <Fab
-            sx={{
-              '&:hover': {
-                backgroundColor: '#3f454f',
-              },
-              backgroundColor: '#57606f ',
-              color: 'white',
-            }}
-            onClick={handleSortByUp}
+            onClick={handleUnFilter}
+            disabled={!isFiltered}
             variant="extended"
+            color="primary"
             size="small"
           >
-            <ArrowUpwardIcon sx={{ fontSize: '20px' }} />
-            A-Z
+            <FilterAltOffIcon />
           </Fab>
-        )}
+          <Slider
+            onChange={handleChange}
+            valueLabelDisplay="on"
+            value={filterRange}
+            size="small"
+            max={1000}
+            min={0}
+          />
+          <Fab
+            onClick={handleFilter}
+            variant="extended"
+            color="primary"
+            size="small"
+          >
+            <FilterAltIcon />
+          </Fab>
+        </Box>
+        <Box sx={searchWrapperStyles}>
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            onChange={handleInputChange}
+            variant="outlined"
+            label="Search"
+            size="small"
+          />
+        </Box>
       </Box>
-      <Box
-        sx={{
-          ...ScrollBarStylesGenerator('calc(100% - 48px)'),
-          gridTemplateColumns: '320px 320px 320px 320px',
-          justifyContent: 'space-around',
-          display: 'grid',
-          gap: '24px',
-        }}
-      >
+      <Box sx={productsWrapperStyles}>
         {products &&
           finalData!.map((product) => {
             return <ProductCard product={product} key={product.id} />;

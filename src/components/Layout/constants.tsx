@@ -30,6 +30,9 @@ export const DrawerMenu = [
     name: 'Orders',
     id: '4',
   },
+];
+
+export const AdminMenu = [
   {
     icon: <SettingsApplicationsIcon sx={{ fontSize: '20px' }} />,
     route: '/admin',

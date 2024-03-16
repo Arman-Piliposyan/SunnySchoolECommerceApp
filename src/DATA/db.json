@@ -1,6 +1,16 @@
 {
   "users": [
     {
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "imageUrl": "https://cdnb.artstation.com/p/assets/images/images/065/925/405/4k/sergey-solop-kratos-god-of-war-01.jpg?1691581582",
+      "password": "123",
+      "email": "admin@gmail.com",
+      "phone": "+37400000000",
+      "token": "8cdd8fcc-67aa-4ad5-b359-dc955f3aa0d1",
+      "id": 0
+    },
+    {
       "firstName": "God",
       "lastName": "Of War",
       "imageUrl": "https://cdnb.artstation.com/p/assets/images/images/065/925/405/4k/sergey-solop-kratos-god-of-war-01.jpg?1691581582",

@@ -28,7 +28,7 @@ export const EditProfileSideBarContent = ({ handleCloseSideBar }: Props) => {
 
   const handleSave = async (data: IProfileData) => {
     try {
-      await editProfile({ id: user?.id as string, data });
+      await editProfile({ id: user?.id.toString() as string, data });
       dispatch(getUser());
       toast.success('Success');
       handleCloseSideBar();

@@ -8,22 +8,25 @@ import ListItemText from '@mui/material/ListItemText';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate, Outlet } from 'react-router';
 import IconButton from '@mui/material/IconButton';
+import { Skeleton, Tooltip } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItem from '@mui/material/ListItem';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Tooltip } from '@mui/material';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 
-import { loadingSelector } from '../../store/user-slice/user-selectors';
+import {
+  loadingSelector,
+  userSelector,
+} from '../../store/user-slice/user-selectors';
 import { LayoutLoader } from '../UI_components/LayoutLoader';
+import { DrawerMenu, AdminMenu } from './constants';
 import { getUser } from '../../store/user-slice';
 import { useAppDispatch } from '../../store';
-import { DrawerMenu } from './constants';
 
 const drawerWidth = 240;
 
@@ -98,6 +101,7 @@ const Drawer = styled(MuiDrawer, {
 
 export const Layout = () => {
   const loading = useSelector(loadingSelector);
+  const user = useSelector(userSelector);
 
   const dispatch = useAppDispatch();
 
@@ -160,38 +164,54 @@ export const Layout = () => {
           </IconButton>
         </DrawerHeader>
         <List sx={{ backgroundColor: '#1976d2', height: '100%' }}>
-          {DrawerMenu.map((menuItem) => (
-            <NavLink
-              style={{ color: 'white' }}
-              to={menuItem.route}
-              key={menuItem.name}
-            >
-              <ListItem sx={{ display: 'block' }} disablePadding>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? 'initial' : 'center',
-                    minHeight: 48,
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      justifyContent: 'center',
-                      mr: open ? 3 : 'auto',
-                      color: 'white',
-                      minWidth: 0,
-                    }}
-                  >
-                    {menuItem.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    sx={{ opacity: open ? 1 : 0 }}
-                    primary={menuItem.name}
+          {(user && user.id === 0 ? AdminMenu : DrawerMenu).map(
+            (menuItem, index) => {
+              if (loading) {
+                return (
+                  <Skeleton
+                    sx={{ marginBottom: '6px', marginLeft: '12px' }}
+                    variant="rounded"
+                    animation="wave"
+                    key={index}
+                    height={40}
+                    width={40}
                   />
-                </ListItemButton>
-              </ListItem>
-            </NavLink>
-          ))}
+                );
+              }
+              return (
+                <NavLink
+                  style={{ color: 'white' }}
+                  to={menuItem.route}
+                  key={menuItem.name}
+                >
+                  <ListItem sx={{ display: 'block' }} disablePadding>
+                    <ListItemButton
+                      sx={{
+                        justifyContent: open ? 'initial' : 'center',
+                        minHeight: 48,
+                        px: 2.5,
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          justifyContent: 'center',
+                          mr: open ? 3 : 'auto',
+                          color: 'white',
+                          minWidth: 0,
+                        }}
+                      >
+                        {menuItem.icon}
+                      </ListItemIcon>
+                      <ListItemText
+                        sx={{ opacity: open ? 1 : 0 }}
+                        primary={menuItem.name}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+              );
+            },
+          )}
         </List>
       </Drawer>
       <Box

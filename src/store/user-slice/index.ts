@@ -8,7 +8,7 @@ type User = {
   imageUrl: string;
   email: string;
   phone: string;
-  id: string;
+  id: number;
 };
 
 type UserStateType = {

@@ -1,3 +1,5 @@
+import { IProductData } from '../types';
+
 export const ScrollBarStylesGenerator = (
   height?: string,
   maxHeight?: string,
@@ -28,5 +30,19 @@ export const ScrollBarStylesGenerator = (
     paddingRight: '6px',
 
     overflowY: 'auto',
+  };
+};
+
+export const alphabetSortingCallBack = (sortedByUp: boolean) => {
+  return (item1: IProductData, item2: IProductData) => {
+    return item1.title.toLocaleLowerCase() > item2.title.toLocaleLowerCase()
+      ? sortedByUp
+        ? 1
+        : -1
+      : item2.title.toLocaleLowerCase() > item1.title.toLocaleLowerCase()
+        ? sortedByUp
+          ? -1
+          : 1
+        : 0;
   };
 };
