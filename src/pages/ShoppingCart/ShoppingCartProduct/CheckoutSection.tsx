@@ -1,4 +1,5 @@
 import { Typography, Button, Box } from '@mui/material';
+import PaidIcon from '@mui/icons-material/Paid';
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -7,9 +8,10 @@ import { format } from 'date-fns';
 import {
   deleteItemFromCard,
   orderPost,
-} from '../../services/shoppingCardService';
-import { userSelector } from '../../store/user-slice/user-selectors';
-import { ICardProductData } from '../../types';
+} from '../../../services/shoppingCardService';
+import { CommonDialog } from '../../../components/UI_components/CommonDialog';
+import { userSelector } from '../../../store/user-slice/user-selectors';
+import { ICardProductData } from '../../../types';
 
 type Props = {
   setIsCardEdited: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +22,7 @@ export const CheckoutSection = ({ setIsCardEdited, product }: Props) => {
   const user = useSelector(userSelector);
 
   const [count, setCount] = useState(product.count);
+  const [isOpenDialog, setIsOpenDialog] = useState(false);
 
   const handleAddItem = () => {
     setCount((prev) => prev + 1);
@@ -30,6 +33,13 @@ export const CheckoutSection = ({ setIsCardEdited, product }: Props) => {
       return;
     }
     setCount((prev) => prev - 1);
+  };
+
+  const handleOpenDialog = () => {
+    setIsOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setIsOpenDialog(false);
   };
 
   const handleCheckoutProduct = async () => {
@@ -74,7 +84,7 @@ export const CheckoutSection = ({ setIsCardEdited, product }: Props) => {
           -
         </Button>
         <Button
-          onClick={handleCheckoutProduct}
+          onClick={handleOpenDialog}
           sx={{ borderRadius: '0' }}
           variant="contained"
           color="primary"
@@ -97,6 +107,26 @@ export const CheckoutSection = ({ setIsCardEdited, product }: Props) => {
       <Typography color={'white'} align="center" fontSize={18}>
         Total Price : {product.price * count}$
       </Typography>
+      {isOpenDialog && (
+        <CommonDialog
+          dialogContent={
+            <Typography sx={{ wordWrap: ' break-word' }}>
+              Are you sure you want to buy this -
+              <span style={{ textDecoration: 'underline', margin: '0 5px' }}>
+                {product.title}
+              </span>
+              product
+            </Typography>
+          }
+          handleCloseDialog={handleCloseDialog}
+          confirmAction={handleCheckoutProduct}
+          isOpenDialog={isOpenDialog}
+          confirmIcon={<PaidIcon />}
+          buttonColor="primary"
+          confirmText="Yes"
+          cancelText="No"
+        />
+      )}
     </>
   );
 };

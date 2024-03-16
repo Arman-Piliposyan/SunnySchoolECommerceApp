@@ -37,3 +37,15 @@ export const searchWrapperStyles = {
   display: 'flex',
   gap: '16px',
 };
+
+export const productCardWrapperStyles = {
+  backgroundColor: '#35374B',
+  flexDirection: 'column',
+  borderRadius: '12px',
+  alignItems: 'center',
+  height: '325px',
+  display: 'flex',
+  padding: '16px',
+  width: '320px',
+  gap: '6px',
+};

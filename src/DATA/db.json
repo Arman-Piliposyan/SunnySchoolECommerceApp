@@ -30,6 +30,15 @@
       "price": 69,
       "count": 4,
       "id": 1
+    },
+    {
+      "date": "2024/03/16 16:03",
+      "userId": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/61Ibl7dJyUL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+      "title": "SteelSeries Aerox 5",
+      "price": 124,
+      "count": 1,
+      "id": 2
     }
   ],
   "shoppingCards": [
@@ -40,6 +49,22 @@
       "price": 124,
       "count": 1,
       "id": 1
+    },
+    {
+      "userId": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/81ykzmz6KZL._AC_SX466_.jpg",
+      "title": "ASUS ROG Azoth",
+      "price": 160,
+      "count": 2,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/71CuCyXIaOL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+      "title": "ASUS ROG Sheath Extended",
+      "price": 23,
+      "count": 3,
+      "id": 3
     }
   ],
   "products": [

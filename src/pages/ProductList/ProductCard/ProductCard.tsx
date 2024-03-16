@@ -2,8 +2,9 @@ import { Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router';
 import React from 'react';
 
+import { productCardWrapperStyles } from '../constants';
 import { AddToCardSection } from './AddToCardSection';
-import { IProductData } from '../../types';
+import { IProductData } from '../../../types';
 
 type Props = { product: IProductData };
 
@@ -15,19 +16,7 @@ export const ProductCard = ({ product }: Props) => {
   };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: '#35374B',
-        flexDirection: 'column',
-        borderRadius: '12px',
-        alignItems: 'center',
-        height: '325px',
-        display: 'flex',
-        padding: '16px',
-        width: '320px',
-        gap: '6px',
-      }}
-    >
+    <Box sx={productCardWrapperStyles}>
       <Typography fontWeight={500} color={'white'} fontSize={18}>
         {product.title}
       </Typography>

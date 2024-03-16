@@ -2,9 +2,9 @@ import { Typography, Button, Box } from '@mui/material';
 import { toast } from 'react-toastify';
 import React from 'react';
 
-import { deleteItemFromCard } from '../../services/shoppingCardService';
+import { deleteItemFromCard } from '../../../services/shoppingCardService';
 import { CheckoutSection } from './CheckoutSection';
-import { ICardProductData } from '../../types';
+import { ICardProductData } from '../../../types';
 
 type Props = {
   setIsCardEdited: React.Dispatch<React.SetStateAction<boolean>>;

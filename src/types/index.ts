@@ -29,16 +29,16 @@ export interface IAddProductData {
 }
 
 export interface IProductData extends IAddProductData {
-  id: string;
+  id: number;
 }
 
 export type IAddProductToCardData = Omit<IAddProductData, 'description'> & {
-  userId: string;
+  userId: number;
   count: number;
 };
 
 export type ICardProductData = IAddProductToCardData & {
-  id: string;
+  id: number;
 };
 
 export type IOrderData = IAddProductToCardData & {

@@ -6,7 +6,7 @@ import { getShoppingCardItems } from '../../services/shoppingCardService';
 import { userSelector } from '../../store/user-slice/user-selectors';
 import { ScrollBarStylesGenerator } from '../../helpers/index';
 import { ICardProductData } from '../../types';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from './ShoppingCartProduct/ProductCard';
 
 export const ShoppingCart = () => {
   const user = useSelector(userSelector);

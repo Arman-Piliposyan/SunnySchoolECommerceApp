@@ -22,7 +22,7 @@ import {
 } from './constants';
 import { getAllProducts } from '../../services/productsService';
 import { alphabetSortingCallBack } from '../../helpers/index';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from './ProductCard/ProductCard';
 import { IProductData } from '../../types';
 
 export const ProductList = () => {

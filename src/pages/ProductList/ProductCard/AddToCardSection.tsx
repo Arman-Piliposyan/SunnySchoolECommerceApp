@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { userSelector } from '../../store/user-slice/user-selectors';
-import { addToCardPost } from '../../services/shoppingCardService';
-import { IProductData } from '../../types';
+import { userSelector } from '../../../store/user-slice/user-selectors';
+import { addToCardPost } from '../../../services/shoppingCardService';
+import { IProductData } from '../../../types';
 
 type Props = { product: IProductData };
 

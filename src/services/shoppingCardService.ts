@@ -15,7 +15,7 @@ export const addToCardPost = async (data: IAddProductToCardData) => {
   }
 };
 
-export const getShoppingCardItems = async (userId: string) => {
+export const getShoppingCardItems = async (userId: number) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const response = await axios.get(
@@ -27,7 +27,7 @@ export const getShoppingCardItems = async (userId: string) => {
   }
 };
 
-export const deleteItemFromCard = async (prodcutId: string) => {
+export const deleteItemFromCard = async (prodcutId: number) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const response = await axios.delete(
@@ -49,7 +49,7 @@ export const orderPost = async (data: IOrderData) => {
   }
 };
 
-export const getOrders = async (userId: string) => {
+export const getOrders = async (userId: number) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const response = await axios.get(
